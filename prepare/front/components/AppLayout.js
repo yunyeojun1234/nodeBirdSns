@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';    //자체적인 라우터 이다. 외우자 링크 컴포넌트,
 import  {Menu, Input, Row, Col} from 'antd';
-
+import LoginForm from '../components/LoginForm'
+import UserPorfile from '../components/UserProfile'
+ 
 
 /* *******children이 무엇을 뜻하는지 공부******** */
 //화면안에 그릴수 있는 모든 것들이 노드다
 const AppLayout= ({children}) => {
+     const[isLoggedIn, setIsLoggedIn] = useState(false)
     return (
     <div>
         <Menu mode="horizontal">
@@ -27,6 +30,7 @@ const AppLayout= ({children}) => {
         </Menu>
         <Row gutter={8}>
             <Col xs={24} md={6} >
+                {isLoggedIn ? <UserProfile/>: <LoginForm />}
             왼쪽 메뉴 </Col>
             <Col xs={24} md={12} >
             {children}</Col>
